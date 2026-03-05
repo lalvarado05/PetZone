@@ -1,0 +1,132 @@
+// Variables (take from your original)
+$color-azul-principal: #3b6ed7
+$color-verde: #59c461
+$color-gris-claro: #eceff1
+$color-azul-grisaceo: #37474f
+$color-blanco: #ffffff
+$color-texto-secundario: #6b7c93
+$color-texto-terciario: #9ca3af
+$color-borde: #e0e4e8
+
+$radius-sm: 8px
+$radius-md: 12px
+$radius-lg: 16px
+$radius-full: 50%
+
+$sombra-card: 0 4px 20px rgba(0,0,0,0.08)
+$sombra-card-hover: 0 12px 30px rgba(59,110,215,0.15)
+$sombra-suave: 0 8px 25px rgba(0,0,0,0.1)
+
+body
+  color: $color-azul-grisaceo
+  background-color: #f5f7fa
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+
+.logo-image
+  height: 48px
+  width: auto
+  object-fit: contain
+
+.logo-text
+  background: linear-gradient(135deg, $color-azul-principal, $color-verde)
+  -webkit-background-clip: text
+  -webkit-text-fill-color: transparent
+  background-clip: text
+
+.navbar
+  backdrop-filter: blur(6px)
+
+.navbar .nav-link
+  color: $color-azul-grisaceo !important
+  font-weight: 500
+
+.navbar .nav-link:hover
+  color: $color-azul-principal !important
+
+.hero-section
+  min-height: 600px
+  display: flex
+  align-items: center
+  background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('../img/photo-dog-cat.jpg')
+  background-size: cover
+  background-position: center
+  color: $color-blanco
+
+.hero-content
+  padding-top: 40px
+  padding-bottom: 40px
+  max-width: 720px
+
+.hero-content h1
+  font-size: 48px
+  line-height: 1.15
+  font-weight: 700
+
+.hero-content p.lead
+  color: rgba(255,255,255,0.95)
+
+.btn-light
+  border-radius: 10px
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18)
+
+.info-card
+  border-radius: $radius-lg
+  box-shadow: $sombra-card
+  transition: transform 0.3s ease, box-shadow 0.3s ease
+  &:hover
+    transform: translateY(-8px)
+    box-shadow: $sombra-card-hover
+
+.card-icon
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  width: 70px
+  height: 70px
+  border-radius: $radius-full
+  background: linear-gradient(135deg, $color-azul-principal, $color-verde)
+  color: $color-blanco
+  font-size: 28px
+
+.valor-card
+  border-radius: $radius-md
+  border: 1px solid $color-borde
+  transition: box-shadow 0.25s ease, transform 0.25s ease
+  &:hover
+    box-shadow: $sombra-suave
+    border-color: transparent
+
+.miembro-card
+  border-radius: $radius-md
+  overflow: hidden
+  border: 1px solid $color-borde
+  transition: box-shadow 0.25s ease
+  .card-img-top
+    height: 240px
+    object-fit: cover
+
+.miembro-card:hover
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1)
+
+footer
+  .btn-white
+    background: $color-blanco
+    color: $color-azul-grisaceo
+    &:hover
+      border-color: $color-azul-principal
+
+.text-tertiary
+  color: $color-texto-terciario
+
+@media (max-width: 768px)
+  .hero-section
+    min-height: 420px
+    text-align: center
+    .hero-content
+      margin: 0 auto
+
+@media (max-width: 480px)
+  .hero-section
+    min-height: 460px
+    .hero-content h1
+      font-size: 26px
