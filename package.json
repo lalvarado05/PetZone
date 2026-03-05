@@ -1,0 +1,29 @@
+{
+  "name": "findmyvet",
+  "version": "1.0.0",
+  "description": "![FindMyVet Banner](img/FMV_logo.png)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass:build": "sass src/sass/main.sass dist/css/main.css",
+    "sass:watch": "sass --watch src/sass/main.sass dist/css/main.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lalvarado05/FindMyVet.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/lalvarado05/FindMyVet/issues"
+  },
+  "homepage": "https://github.com/lalvarado05/FindMyVet#readme",
+  "devDependencies": {
+    "sass": "^1.97.3"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.8"
+  }
+}

@@ -1,0 +1,141 @@
+body {
+  color: #37474f;
+  background-color: #f5f7fa;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.logo-image {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+}
+
+.logo-text {
+  background: linear-gradient(135deg, #3b6ed7, #59c461);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.navbar {
+  backdrop-filter: blur(6px);
+}
+
+.navbar .nav-link {
+  color: #37474f !important;
+  font-weight: 500;
+}
+
+.navbar .nav-link:hover {
+  color: #3b6ed7 !important;
+}
+
+.hero-section {
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url("../img/photo-dog-cat.jpg");
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+}
+
+.hero-content {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  max-width: 720px;
+}
+
+.hero-content h1 {
+  font-size: 48px;
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+.hero-content p.lead {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.btn-light {
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+.info-card {
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.info-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(59, 110, 215, 0.15);
+}
+
+.card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3b6ed7, #59c461);
+  color: #ffffff;
+  font-size: 28px;
+}
+
+.valor-card {
+  border-radius: 12px;
+  border: 1px solid #e0e4e8;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+.valor-card:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-color: transparent;
+}
+
+.miembro-card {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e0e4e8;
+  transition: box-shadow 0.25s ease;
+}
+.miembro-card .card-img-top {
+  height: 240px;
+  object-fit: cover;
+}
+
+.miembro-card:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+footer .btn-white {
+  background: #ffffff;
+  color: #37474f;
+}
+footer .btn-white:hover {
+  border-color: #3b6ed7;
+}
+
+.text-tertiary {
+  color: #9ca3af;
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 420px;
+    text-align: center;
+  }
+  .hero-section .hero-content {
+    margin: 0 auto;
+  }
+}
+@media (max-width: 480px) {
+  .hero-section {
+    min-height: 460px;
+  }
+  .hero-section .hero-content h1 {
+    font-size: 26px;
+  }
+}
+
+/*# sourceMappingURL=main.css.map */
