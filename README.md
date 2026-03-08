@@ -1,44 +1,33 @@
-# 🐾 FindMyVet
+## PetZone
+Todo lo que tu Mascota Necesita en un Solo Lugar
 
-## Encuentra el Mejor Veterinario para tu Mascota
+## Descripción del Proyecto
 
-![FindMyVet Banner](img/FMV_logo.png)
+PetZone es una plataforma de comercio electrónico especializada en la venta de productos para mascotas. Nuestra misión es ofrecer a los dueños de mascotas una experiencia de compra segura, intuitiva y accesible desde cualquier dispositivo, garantizando productos de alta calidad para el cuidado y bienestar animal.
 
----
+La aplicación cuenta con un catálogo completo de productos organizados por categorías, permitiendo a los usuarios explorar, buscar y adquirir artículos de manera eficiente. Además, incorpora un sistema de carrito de compras, pagos seguros y seguimiento de pedidos en tiempo real para brindar una experiencia confiable y satisfactoria.
 
-## 📋 Descripción del Proyecto
+## Misión
 
-**FindMyVet** es una plataforma de comercio electrónico especializada en la búsqueda y contratación de servicios veterinarios. Nuestra misión es conectar a dueños de mascotas con veterinarios profesionales, confiables y verificados, garantizando una experiencia segura, intuitiva y accesible desde cualquier dispositivo.
+Brindar a los dueños de mascotas acceso fácil, rápido y seguro a productos de alta calidad, mejorando el bienestar animal a través de una plataforma digital eficiente, confiable y disponible 24/7.
 
-La aplicación ofrece un catálogo completo de servicios veterinarios, permitiendo a los usuarios visualizar, buscar y contratar servicios de forma eficiente, además de contar con un sistema de pagos seguro y seguimiento de órdenes en tiempo real.
+## Visión
 
----
+Ser la tienda en línea líder en productos para mascotas, reconocida por su variedad, calidad y excelente experiencia de compra, transformando la manera en que las personas adquieren artículos para el cuidado y felicidad de sus mascotas.
 
-## 🎯 Misión
+## Nuestros Valores
 
-Conectar a los dueños de mascotas con veterinarios certificados de manera rápida, segura y disponible 24/7, facilitando el acceso a atención veterinaria confiable —especialmente en situaciones de urgencia— a través de una plataforma digital eficiente y fácil de usar.
+Calidad Garantizada: Ofrecemos productos seleccionados bajo altos estándares para asegurar la salud y el bienestar de las mascotas.
 
----
+Confianza: Garantizamos pagos seguros, transparencia en los procesos y protección de datos.
 
-## 🚀 Visión
+Compromiso con el Bienestar Animal: Cada producto está pensado para mejorar la calidad de vida de las mascotas.
 
-Ser la plataforma líder en atención veterinaria digital, reconocida por brindar respuestas inmediatas, veterinarios de alta calidad y tranquilidad a los usuarios, transformando la forma en que las personas acceden al cuidado de la salud animal en cualquier momento y lugar.
-
----
-
-## 💎 Nuestros Valores
-
-- **Calidad Profesional**: Trabajamos únicamente con veterinarios certificados y evaluados para garantizar un servicio confiable y seguro.
-
-- **Confianza**: Construimos relaciones basadas en la transparencia, la seguridad y el cumplimiento de altos estándares.
-
-- **Compromiso con el Bienestar Animal**: Cada decisión está guiada por el cuidado, la salud y la vida de las mascotas.
-
-- **Responsabilidad**: Actuamos con ética, seriedad y respeto hacia usuarios, veterinarios y mascotas.
+Responsabilidad: Actuamos con ética, profesionalismo y atención al cliente de excelencia.
 
 ---
 
-## � Integrantes del Equipo
+## Integrantes del Equipo
 
 | Nombre | Rol |
 |--------|-----|
@@ -48,7 +37,7 @@ Ser la plataforma líder en atención veterinaria digital, reconocida por brinda
 
 ---
 
-## 🎨 Paleta de Colores
+## Paleta de Colores
 
 | Color | Código | Uso |
 |-------|--------|-----|
@@ -59,7 +48,7 @@ Ser la plataforma líder en atención veterinaria digital, reconocida por brinda
 
 ---
 
-## �🛠️ Tecnologías Utilizadas
+## Tecnologías Utilizadas
 
 - **Frontend**: HTML5, CSS3, JavaScript (Vanilla)
 - **Responsive Design**: Mobile-first approach
@@ -68,7 +57,7 @@ Ser la plataforma líder en atención veterinaria digital, reconocida por brinda
 
 
 
-## 🚀 Instalación y Uso
+## Instalación y Uso
 
 ### Requisitos Previos:
 - Navegador web moderno (Chrome, Firefox, Edge, Safari)
@@ -88,14 +77,14 @@ Ser la plataforma líder en atención veterinaria digital, reconocida por brinda
 
 ---
 
-## 📄 Licencia
+## Licencia
 
 Este proyecto está desarrollado como parte del curso **Programación Web Avanzada** del **CENFOTEC**.
 Todos los derechos reservados © 2026 FindMyVet
 
 ---
 
-## 🎓 Entrega del Proyecto
+## Entrega del Proyecto
 
 **Primera Entrega - Objetivos Completados:**
 - ✅ Definición de la empresa (nombre, misión, visión, valores)
@@ -105,8 +94,11 @@ Todos los derechos reservados © 2026 FindMyVet
 
 ---
 
-**Versión**: 1.0
-**Última actualización**: Febrero 14, 2026
+**Segunda Entrega - Objetivos Completados:**
+Pendiente**
+
+**Versión**: 1.1
+**Última actualización**: Marzon 8, 2026
 
 ---
 
