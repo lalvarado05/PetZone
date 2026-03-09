@@ -28,3 +28,15 @@ navbarLinks.forEach(link => {
     });
 
 });
+
+
+function actualizarContador() {
+  const badge = document.getElementById("cartCount");
+  if (!badge) return;
+  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  badge.innerText = carrito.reduce((acc, item) => acc + item.cantidad, 0);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  actualizarContador();
+});
