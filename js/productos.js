@@ -29,7 +29,7 @@ return `
 <a href="VistaProducto.html?id=${articulo.id}">
         <img 
           class="card-img-top p-3" 
-          src="img/productos/${articulo.image}" 
+          src="img/${articulo.image}" 
           alt="${articulo.name}"
           style="height:150px; object-fit:contain; cursor:pointer;"
         >
