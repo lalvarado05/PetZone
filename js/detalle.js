@@ -9,9 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    // 2. Intentamos cargar el archivo JSON
-    // Si tu carpeta se llama "data", usa "data/productos.json"
-    // Si está en la misma carpeta que el html, usa "productos.json"
+    
     fetch("data/productos.json") 
         .then(response => {
             if (!response.ok) throw new Error("No se encontró el archivo productos.json en la carpeta data/");
@@ -19,19 +17,16 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then(productos => {
             
-            // 3. Buscamos el producto
             const producto = productos.find(p => p.id === idProducto);
 
             if (producto) {
-                // 4. Ponemos los datos en el HTML
                 document.getElementById("detalleNombre").innerText = producto.name;
                 document.getElementById("detallePrecio").innerText = "₡" + producto.price_crc.toLocaleString();
                 document.getElementById("detalleMarca").innerText = "Marca: " + producto.marca;
                 document.getElementById("detalleDescripcion").innerText = producto.description;
                 
-                // 5. Ponemos la imagen
-                // REVISA: ¿Tus fotos están en la carpeta img/productos/?
-                document.getElementById("detalleImagen").src = "img/productos/" + producto.image;
+          
+                document.getElementById("detalleImagen").src = "img/" + producto.image;
 
             } else {
                 alert("ERROR: El ID " + idProducto + " no existe dentro de tu productos.json");
