@@ -18,7 +18,7 @@ function mostrarCarrito() {
     return `
       <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-2">
         <div class="d-flex align-items-center">
-          <img src="img/productos/${prod.image}" 
+          <img src="img/${prod.image}" 
                style="width: 50px; height: 50px; object-fit: contain;" class="me-3">
           <div>
             <h6 class="mb-0 small">${prod.name || 'Producto'}</h6>
