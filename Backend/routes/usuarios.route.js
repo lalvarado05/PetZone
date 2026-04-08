@@ -1,56 +1,16 @@
 const Usuario = require('../models/usuario');
-const Departamento = require('../models/departamento');
+const { auth, esAdmin } = require('../middleware/auth');
 const express = require('express');
 const router = express.Router();
 
-router.post('/', async(req, res) => {
-    const { nombre, email, cedula, tipoUsuario, departamentoId } = req.body;
-
-    if (!nombre || !email || !cedula || !tipoUsuario) {
-        return res.status(400).json({
-            message: 'Todos los campos son requeridos.',
-            estado: 'error'
-        });
-    }
-
+router.get('/', auth, esAdmin, async (req, res) => {
     try {
-        if (departamentoId) {
-            const departamentoExiste = await Departamento.findById(departamentoId);
-            if (!departamentoExiste) {
-                return res.status(400).json({
-                    message: 'El departamento no existe.',
-                    estado: 'error'
-                });
-            }
-        }
-        const usuarioNuevo = new Usuario({ nombre, email, cedula, tipoUsuario, departamento: departamentoId });
-        await usuarioNuevo.save();
-
-        //opcional, retornar con departamento poblado
-
-        const usuarioConDepartamento = await Usuario.findById(usuarioNuevo._id).populate('departamento');
-
-        res.status(201).json({
-            message: 'Usuario creado',
-            estado: 'success',
-            usuario: usuarioConDepartamento
-        });
-    } catch (error) {
-        res.status(500).json({
-            message: 'Error al crear el usuario',
-            estado: 'error'
-        });
-    }
-});
-
-router.get('/', async(req, res) => {
-    try {
-        const usuarios = await Usuario.find().populate('departamento');
+        const usuarios = await Usuario.find().select('-password');
         res.json({
             message: 'Usuarios listados',
             total: usuarios.length,
             estado: 'success',
-            usuarios: usuarios
+            usuarios
         });
     } catch (error) {
         res.status(500).json({
@@ -61,119 +21,65 @@ router.get('/', async(req, res) => {
     }
 });
 
-router.get('/:id', async(req, res) => {
-    const id = req.params.id;
+router.get('/:id', auth, async (req, res) => {
     try {
-        const usuario = await Usuario.findById(id).populate('departamento');
-        if (usuario) {
-            res.json({
-                message: 'Usuario encontrado',
-                estado: 'success',
-                usuario: usuario
-            });
-        } else {
-            res.status(404).json({
-                message: 'Usuario no encontrado',
-                estado: 'error'
-            });
-        }
-    } catch (error) {
-        res.status(500).json({
-            message: 'Error al buscar el usuario',
-            estado: 'error'
-        });
-    }
-});
-
-router.get('/cedula/:cedula', async(req, res) => {
-    const cedula = req.params.cedula;
-    try {
-        const usuario = await Usuario.findOne({ cedula: cedula }).populate('departamento');
-        if (usuario) {
-            res.json({
-                message: 'Usuario encontrado',
-                estado: 'success',
-                usuario: usuario
-            });
-        } else {
-            res.status(404).json({
-                message: 'Usuario no encontrado',
-                estado: 'error'
-            });
-        }
-    } catch (error) {
-        res.status(500).json({
-            message: 'Error al buscar el usuario',
-            estado: 'error'
-        });
-    }
-});
-
-//crear endpoint para actualizar o eliminar un usuario
-router.put('/:id', async(req, res) => {
-    const id = req.params.id;
-
-    try {
-        const usuario = await Usuario.findById(id).populate('departamento');
+        const usuario = await Usuario.findById(req.params.id).select('-password');
         if (!usuario) {
-            return res.status(404).json({
-                message: 'Usuario no encontrado',
-                estado: 'error'
-            });
+            return res.status(404).json({ message: 'Usuario no encontrado', estado: 'error' });
+        }
+        res.json({ message: 'Usuario encontrado', estado: 'success', usuario });
+    } catch (error) {
+        res.status(500).json({ message: 'Error al buscar el usuario', estado: 'error' });
+    }
+});
+
+router.put('/:id', auth, async (req, res) => {
+    try {
+        if (req.usuario._id.toString() !== req.params.id && req.usuario.rol !== 'admin') {
+            return res.status(403).json({ message: 'No tiene permiso para editar este usuario.', estado: 'error' });
         }
 
-        const payload = (req.body && typeof req.body === 'object') ? req.body : {};
-        const { nombre, email, cedula, tipoUsuario } = payload;
+        const usuario = await Usuario.findById(req.params.id);
+        if (!usuario) {
+            return res.status(404).json({ message: 'Usuario no encontrado', estado: 'error' });
+        }
 
-        if (!nombre && !email && !cedula && !tipoUsuario) {
-            return res.status(400).json({
-                message: 'Debe enviar al menos un campo para actualizar en el body (JSON).',
-                estado: 'error'
-            });
+        const { nombre, email, cedula, rol } = req.body;
+
+        if (rol !== undefined) {
+            if (req.usuario.rol !== 'admin') {
+                return res.status(403).json({ message: 'Solo un administrador puede cambiar el rol.', estado: 'error' });
+            }
+            if (rol !== 'cliente' && rol !== 'admin') {
+                return res.status(400).json({ message: 'Rol inválido. Valores permitidos: cliente, admin.', estado: 'error' });
+            }
+            usuario.rol = rol;
         }
 
         if (nombre !== undefined) usuario.nombre = nombre;
         if (email !== undefined) usuario.email = email;
         if (cedula !== undefined) usuario.cedula = cedula;
-        if (tipoUsuario !== undefined) usuario.tipoUsuario = tipoUsuario;
 
         await usuario.save();
-        res.json({
-            message: 'Usuario actualizado',
-            estado: 'success',
-            usuario: usuario
-        });
+        const usuarioActualizado = await Usuario.findById(usuario._id).select('-password');
+
+        res.json({ message: 'Usuario actualizado', estado: 'success', usuario: usuarioActualizado });
     } catch (error) {
-        res.status(500).json({
-            message: 'Error al actualizar el usuario',
-            estado: 'error'
-        });
+        res.status(500).json({ message: 'Error al actualizar el usuario', estado: 'error' });
     }
 });
 
-router.delete('/:id', async(req, res) => {
-    const id = req.params.id;
+router.delete('/:id', auth, esAdmin, async (req, res) => {
     try {
-        const usuario = await Usuario.findById(id).populate('departamento');
+        const usuario = await Usuario.findById(req.params.id);
         if (!usuario) {
-            return res.status(404).json({
-                message: 'Usuario no encontrado',
-                estado: 'error'
-            });
+            return res.status(404).json({ message: 'Usuario no encontrado', estado: 'error' });
         }
         await usuario.deleteOne();
-        res.json({
-            message: 'Usuario eliminado',
-            estado: 'success'
-        });
+        res.json({ message: 'Usuario eliminado', estado: 'success' });
     } catch (error) {
-        res.status(500).json({
-            message: 'Error al eliminar el usuario',
-            estado: 'error'
-        });
+        res.status(500).json({ message: 'Error al eliminar el usuario', estado: 'error' });
     }
 });
-
-// Investigar como se crean las clases en JavaScript y adaptar el ejemplo al uso de la misma
 
 module.exports = router;
