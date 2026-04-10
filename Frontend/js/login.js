@@ -277,7 +277,7 @@ function initAuth() {
                     method: 'POST',
                     body: JSON.stringify({
                         nombre: data.registerName,
-                        id: data.registerId,
+                        cedula: data.registerId,
                         username: data.registerUsername,
                         email: data.registerEmail,
                         password: data.registerPassword
