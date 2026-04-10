@@ -10,6 +10,8 @@ function verificarAutenticacion() {
 
 let listaArticulos = [];
 const seccionArticulos = document.querySelector("#seccionProductos");
+const searchInput = document.querySelector("#searchInput");
+const filtersContainer = document.querySelector("#filtersContainer");
 
 // Cargar productos desde la API
 const cargarArticulos = async () => {
@@ -37,7 +39,7 @@ const cargarArticulos = async () => {
 
 function pintarArticulos(articulos) {
   if (articulos.length === 0) {
-    seccionArticulos.innerHTML = "<p>Sin resultados</p>";
+    seccionArticulos.innerHTML = "<p class='text-center py-4'>No se encontraron productos</p>";
     return;
   }
 
@@ -50,7 +52,7 @@ return `
 <a href="vistaProducto.html?id=${articulo.id}">
         <img 
           class="card-img-top p-3" 
-          src="img/${articulo.image}" 
+          src="${getImageUrl(articulo.image)}" 
           alt="${articulo.name}"
           style="height:150px; object-fit:contain; cursor:pointer;"
         >
@@ -71,6 +73,42 @@ return `
   </div>`;
 }).join('');
   seccionArticulos.innerHTML = html;
+}
+
+// Función para filtrar productos
+function filtrarProductos() {
+  const searchTerm = searchInput.value.toLowerCase();
+  const categoriasSeleccionadas = Array.from(document.querySelectorAll('.filter-categoria:checked'))
+    .map(cb => cb.value);
+
+  const productosFiltrados = listaArticulos.filter(articulo => {
+    const cumpleBusqueda = articulo.name.toLowerCase().includes(searchTerm) ||
+                          articulo.description.toLowerCase().includes(searchTerm);
+    
+    const cumpleCategoria = categoriasSeleccionadas.length === 0 ||
+                           categoriasSeleccionadas.includes(articulo.categoria);
+    
+    return cumpleBusqueda && cumpleCategoria;
+  });
+
+  pintarArticulos(productosFiltrados);
+}
+
+// Función para crear filtros de categoría
+function crearFiltros() {
+  const categorias = [...new Set(listaArticulos.map(p => p.categoria))];
+  
+  filtersContainer.innerHTML = categorias.map(cat => `
+    <div class="form-check form-check-inline">
+      <input class="form-check-input filter-categoria" type="checkbox" id="cat-${cat}" value="${cat}">
+      <label class="form-check-label" for="cat-${cat}">${cat}</label>
+    </div>
+  `).join('');
+
+  // Agregar event listeners a los filtros
+  document.querySelectorAll('.filter-categoria').forEach(checkbox => {
+    checkbox.addEventListener('change', filtrarProductos);
+  });
 }
 
 async function agregarCarrito(productId) {
@@ -150,4 +188,12 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!verificarAutenticacion()) return;
   cargarArticulos();
   actualizarContador();
+  
+  // Event listener para búsqueda
+  if (searchInput) {
+    searchInput.addEventListener('input', filtrarProductos);
+  }
+  
+  // Crear filtros después de cargar productos
+  crearFiltros();
 });

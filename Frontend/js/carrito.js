@@ -29,26 +29,23 @@ async function mostrarCarrito() {
     const html = items.map((item, index) => {
       const producto = item.producto || {};
       const precio = producto.precio || 0;
-      const cantidad = item.cantidad || 0;
+      const cantidad = item.cantidad || 1;
       const subtotal = precio * cantidad;
 
       return `
-        <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-2">
-          <div class="d-flex align-items-center">
-            <img src="img/${producto.imagen || 'placeholder.png'}" 
-                 style="width: 50px; height: 50px; object-fit: contain;" class="me-3">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div class="d-flex align-items-center gap-3">
+            <img src="${getImageUrl(producto.imagen)}" alt="${producto.nombre}" class="rounded" style="width: 60px; height: 60px; object-fit: cover;">
             <div>
-              <h6 class="mb-0 small">${producto.nombre || 'Producto'}</h6>
-              <small class="text-muted">
-                ${cantidad} x ₡${precio.toLocaleString()}
-              </small>
+              <h6 class="mb-0">${producto.nombre}</h6>
+              <small class="text-muted">₡${precio.toLocaleString()} x ${cantidad}</small>
             </div>
           </div>
           <div class="text-end">
-              <div class="fw-bold">₡${subtotal.toLocaleString()}</div>
-              <button class="btn btn-sm text-danger p-0" onclick="eliminarProducto('${producto._id}')">
-                  <i class="bi bi-trash"></i>
-              </button>
+            <strong>₡${subtotal.toLocaleString()}</strong>
+            <button class="btn btn-sm btn-outline-danger ms-2" onclick="eliminarProducto('${item._id}')">
+              <i class="bi bi-trash"></i>
+            </button>
           </div>
         </div>
       `;
@@ -87,7 +84,7 @@ function mostrarCarritoLocalStorage() {
     return `
       <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-2">
         <div class="d-flex align-items-center">
-          <img src="img/${prod.image}" 
+          <img src="${getImageUrl(prod.image)}"
                style="width: 50px; height: 50px; object-fit: contain;" class="me-3">
           <div>
             <h6 class="mb-0 small">${prod.name || 'Producto'}</h6>

@@ -27,6 +27,17 @@ async function handleResponse(response) {
     return data;
 }
 
+// Función helper para obtener URL de imagen (soporta URLs externas y locales)
+function getImageUrl(imagen) {
+    if (!imagen) return 'img/placeholder.png';
+    // Si es una URL externa (http:// o https://), usarla directamente
+    if (imagen.startsWith('http://') || imagen.startsWith('https://')) {
+        return imagen;
+    }
+    // Si es una ruta local, agregar el prefijo img/
+    return 'img/' + imagen;
+}
+
 const navbar = document.querySelector('.navbar');
 
 window.addEventListener('scroll', () => {

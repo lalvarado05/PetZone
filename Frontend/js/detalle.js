@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.getElementById("detallePrecio").innerText = "₡" + productoActual.precio.toLocaleString();
         document.getElementById("detalleMarca").innerText = "Marca: " + (productoActual.marca || 'N/A');
         document.getElementById("detalleDescripcion").innerText = productoActual.descripcion;
-        document.getElementById("detalleImagen").src = "img/" + productoActual.imagen;
+        document.getElementById("detalleImagen").src = getImageUrl(productoActual.imagen);
 
         const btnAgregar = document.getElementById("btnAgregar");
         
