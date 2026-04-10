@@ -7,9 +7,9 @@ const router = express.Router();
 router.post('/registro', async (req, res) => {
     const { nombre, username, email, password, cedula } = req.body;
 
-    if (!nombre || !username || !email || !password) {
+    if (!nombre || !username || !email || !password || !cedula) {
         return res.status(400).json({
-            message: 'Los campos nombre, username, email y password son requeridos.',
+            message: 'Los campos nombre, username, email, password y cedula son requeridos.',
             estado: 'error'
         });
     }
